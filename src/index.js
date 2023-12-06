@@ -1,14 +1,41 @@
 import axios from "axios";
-import { fetchBreeds } from "./cat-api";
+import { fetchBreeds, fetchCatByBreed } from "./cat-api";
+import SlimSelect from 'slim-select';
+import '/node_modules/slim-select/dist/slimselect.css';
+
+
 
 axios.defaults.headers.common["x-api-key"] = "live_w5PmOMDLB7vwucz1LhkLCDly2e2kYoJkMuHaX1iBhUTtBELR2tDGEAKumtjo5jkc";
 console.log(fetchBreeds());
 const searchForm = document.querySelector(".js-search-form");
 const info = document.querySelector(".cat-info");
 const select = document.querySelector("select.breed-select");
+const URL = "https://api.thecatapi.com/v1/images";
 searchForm.addEventListener("submit", handleSearch);
 function handleSearch(event) {
     event.preventDefault();
+    const option = select.value;
+    console.log(option);
+    fetchCatByBreed(option)
+        .then(data => {
+            console.log(data[0].id);
+            return data[0].id;
+      
+        })
+        .then(info => {
+            return fetch(`${URL}/${info}`)
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error(res.statusText)
+                    }
+                             return res.json();
+                })
+                .then(catInfo => {
+                    console.log(catInfo);
+                })
+            })
+
+    .catch(err=>console.log(err))
 }
 
 
@@ -23,8 +50,17 @@ fetchBreeds()
              let option = document.createElement("option");
             option.text = data[i].name;
             option.value = data[i].id;
-
             select.add(option);
+
         }
+    new SlimSelect({
+        select: '#single',
+
+})
        })
      .catch(err=> console.log(err))
+
+function createMarkup(arr) {
+    return arr.map(({ item }) => `
+    `)
+}

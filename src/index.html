@@ -11,11 +11,10 @@
     body {
       font-family: Arial, sans-serif;
       background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+
+padding-left: 10px;
+
+  
       height: 100vh;
     }
 
@@ -47,6 +46,7 @@
       border-radius: 4px;
       cursor: pointer;
       font-size: 16px;
+      margin-top: 10px;
     }
 
     .search-button:hover {
@@ -59,13 +59,13 @@
   <div class="search-container">
     <h2>Пошук</h2>
     <form action="#" class="js-search-form">
-    <select class="breed-select"></select>
-      <button type="submit" class="search-button">Знайти</button>
+    <select class="breed-select"  id="single"></select>
+    <button type="submit" class="search-button">Знайти</button>
     </form>
   </div>
 
-    <p class="loader">Loading data, please wait...</p>
-    <p class="error">Oops! Something went wrong! Try reloading the page!</p>
+    <!-- <p class="loader">Loading data, please wait...</p>
+    <p class="error">Oops! Something went wrong! Try reloading the page!</p> -->
     <div class="cat-info"></div>
 
     <script src="index.js" type="module"></script>

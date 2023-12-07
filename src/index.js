@@ -22,8 +22,8 @@ function handleSearch(event) {
             return data[0].id;
       
         })
-        .then(info => {
-            return fetch(`${URL}/${info}`)
+        .then(inf => {
+            return fetch(`${URL}/${inf}`)
                 .then(res => {
                     if (!res.ok) {
                         throw new Error(res.statusText)
@@ -31,11 +31,16 @@ function handleSearch(event) {
                              return res.json();
                 })
                 .then(catInfo => {
-                    console.log(catInfo);
+                    console.log(catInfo.breeds[0]);
+                    console.log(catInfo.url);
+                    
+                  
+                    info.innerHTML = createMarkup(catInfo.breeds[0],catInfo );
                 })
             })
 
-    .catch(err=>console.log(err))
+        .catch(err => console.log(err))
+    .finally(()=>searchForm.reset())
 }
 
 
@@ -60,7 +65,12 @@ fetchBreeds()
        })
      .catch(err=> console.log(err))
 
-function createMarkup(arr) {
-    return arr.map(({ item }) => `
-    `)
+function createMarkup({ name, description, temperament},catInfo ) {
+    return `
+    <img src="${catInfo.url
+}" alt="${name}" class="cat-icon"\>
+    <h2 class="cat-breed">${name}</h2>
+    <p class="cat-description">${description}</p>
+    <pclass="cat-temperament">${temperament}</pclass>
+    `
 }

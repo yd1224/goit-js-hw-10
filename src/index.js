@@ -43,6 +43,7 @@ function handleSearch(event) {
 function addSelect() {
     fetchBreeds()
         .then(data => {
+            select.classList.remove("display");
             for (let i = 0; i < data.length; i++) {
                 let option = document.createElement("option");
                 option.text = data[i].name;

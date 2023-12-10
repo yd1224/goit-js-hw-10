@@ -1,8 +1,9 @@
-
-
+import Notiflix from 'notiflix'; 
+const loader2 = document.querySelector('.loader.number2');
+    const loader1 = document.querySelector('.loader.number1');
 const container = document.querySelector(".cont");
-// showLoader();
-// container.style.display = "none";
+const BASE_URL = "https://api.thecatapi.com/v1";
+
 
 import axios from "axios";
 import { fetchBreeds, fetchCatByBreed } from "./cat-api";
@@ -18,22 +19,23 @@ const select = document.querySelector("select.breed-select");
 
 
 
-const URL = "https://api.thecatapi.com/v1/images";
+const URL = `${BASE_URL}/images`;
 
+      select.style.visibility = "hidden";
 
 addSelect();
-        // hideLoader();
+
             select.style.visibility = "visible"; // Show the container after the request
 container.style.display = "block";
 
-searchForm.addEventListener("submit", handleSearch);
+select.addEventListener("change", handleSearch);
 function handleSearch(event) {
     event.preventDefault();
 
-    // console.log(option);
+
+        showLoader1();
  addDesc();
-        //  hideLoader1()
-               info.style.visibility = "hidden"; 
+       
 }
 
 
@@ -41,6 +43,7 @@ function handleSearch(event) {
 
 
 function addSelect() {
+  
     fetchBreeds()
         .then(data => {
             select.classList.remove("display");
@@ -52,19 +55,24 @@ function addSelect() {
 
             }
 
-    // hideLoader();
+  
             new SlimSelect({
                 select: '#single',
             });
 
         })
-        .catch(err => console.log(err));
+
+            hideLoader2();
+            select.style.visibility = "visible";
+
 }
 function addDesc() {
-        const option = select.value;
+    const option = select.value;
+       info.style.visibility = "hidden";
+
         fetchCatByBreed(option)
         .then(data => {
-            console.log(data[0].id);
+      
             return data[0].id;
       
         })
@@ -77,8 +85,7 @@ function addDesc() {
                              return res.json();
                 })
                 .then(catInfo => {
-                    console.log(catInfo.breeds[0]);
-                    console.log(catInfo.url);
+                
 
                   
                     info.innerHTML = createMarkup(catInfo.breeds[0], catInfo);
@@ -87,7 +94,10 @@ function addDesc() {
         })
 
 
-        .catch(err => console.log(err))
+        .catch(() =>  Notiflix.Notify.failure(
+          ` Oops! Something went wrong! Try reloading the page!`,
+ 
+        ))
     .finally(()=>searchForm.reset())
 }
 
@@ -112,7 +122,17 @@ function createMarkup({ name, description, temperament }, catInfo) {
 
 
 function hideLoader1() {
-    const loader1 = document.querySelector('.loader.number1');
-      loader1.style.display = "none";
+
+    loader1.style.visibility = "hidden";
 }
 
+
+
+function showLoader1() {
+
+    loader1.style.visibility = "visible";
+}
+function hideLoader2() {
+
+    loader2.style.display = "none";
+}

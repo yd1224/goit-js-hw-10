@@ -82,13 +82,14 @@ body {
   border-radius: 50%;
   position: relative;
   animation: rotate 1s linear infinite;
-  visibility: hidden;
+
   /* margin-left: 100px; */
 }
 .number1 {
   position: fixed;
   left: 20px; /* Adjust the left position as needed */
   transform: translateY(-50%);
+  visibility: hidden;
 }
 .loader::before,
 .loader::after {

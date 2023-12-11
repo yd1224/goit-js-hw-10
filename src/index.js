@@ -1,5 +1,5 @@
 import Notiflix from 'notiflix'; 
-const loader2 = document.querySelector('.loader');
+const loader2 = document.querySelector('.loader.number2');
 
     console.log(loader2);
     const loader1 = document.querySelector('.loader.number1');
@@ -24,7 +24,7 @@ const select = document.querySelector("select.breed-select");
 const URL = `${BASE_URL}/images`;
 
       select.style.visibility = "hidden";
-
+// showLoader2();
 addSelect();
 
             select.style.visibility = "visible"; // Show the container after the request
@@ -136,8 +136,9 @@ function showLoader1() {
 
     loader1.style.visibility = "visible";
 }
+
 function hideLoader2() {
 
-    loader2.classList.add("display");
-    console.log("hi");
+    loader2.style.display = "none";
+    console.log("ooo");
 }

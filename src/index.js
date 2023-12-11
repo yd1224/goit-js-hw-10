@@ -1,5 +1,7 @@
 import Notiflix from 'notiflix'; 
-const loader2 = document.querySelector('.loader.number2');
+const loader2 = document.querySelector('.loader');
+
+    console.log(loader2);
     const loader1 = document.querySelector('.loader.number1');
 const container = document.querySelector(".cont");
 const BASE_URL = "https://api.thecatapi.com/v1";

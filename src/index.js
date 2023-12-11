@@ -1,5 +1,5 @@
 import Notiflix from 'notiflix'; 
-const loader2 = document.querySelector('.loader.number2');
+const loader2 = document.querySelector('.loader2');
 
     console.log(loader2);
     const loader1 = document.querySelector('.loader.number1');
@@ -32,7 +32,7 @@ container.style.display = "block";
 
 select.addEventListener("change", handleSearch);
 function handleSearch(event) {
-    event.preventDefault();
+
 
 
         showLoader1();

@@ -139,6 +139,6 @@ function showLoader1() {
 
 function hideLoader2() {
 
-    loader2.style.display = "none";
+    loader2.classList.toggle("display");
     console.log("ooo");
 }

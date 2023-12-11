@@ -94,9 +94,11 @@ function addDesc() {
         })
 
 
-        .catch(() =>  Notiflix.Notify.failure(
+            .catch(() =>
+                
+                Notiflix.Notify.failure(
           ` Oops! Something went wrong! Try reloading the page!`,
- 
+ hideLoader1()
         ))
     .finally(()=>searchForm.reset())
 }

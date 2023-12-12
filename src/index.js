@@ -1,7 +1,7 @@
 import Notiflix from 'notiflix'; 
-const loader2 = document.querySelector('.loader2');
+const loader = document.querySelector('.loader');
 
-    console.log(loader2);
+    console.log(loader);
     const loader1 = document.querySelector('.loader.number1');
 const container = document.querySelector(".cont");
 const BASE_URL = "https://api.thecatapi.com/v1";
@@ -23,8 +23,7 @@ const select = document.querySelector("select.breed-select");
 
 const URL = `${BASE_URL}/images`;
 
-      select.style.visibility = "hidden";
-// showLoader2();
+
 addSelect();
 
             select.style.visibility = "visible"; // Show the container after the request
@@ -45,7 +44,8 @@ function handleSearch(event) {
 
 
 function addSelect() {
-  
+    //    select.style.visibility = "hidden";
+    showLoader();
     fetchBreeds()
         .then(data => {
             select.classList.remove("display");
@@ -63,15 +63,19 @@ function addSelect() {
             });
 
         })
-
-            hideLoader2();
+        .finally(() => {
+          hideLoader();
             select.style.visibility = "visible";
+})
+            // hideLoader2();
+            // select.style.visibility = "visible";
 
 }
 function addDesc() {
     const option = select.value;
-       info.style.visibility = "hidden";
-
+    //    info.style.visibility = "hidden";
+    info.style.visibility = "hidden";
+    // showLoader1();
         fetchCatByBreed(option)
         .then(data => {
       
@@ -107,7 +111,9 @@ function addDesc() {
 
 function createMarkup({ name, description, temperament }, catInfo) {
 
-            hideLoader1();
+            // hideLoader1();
+    // info.style.visibility = "visible";
+             hideLoader1();
             info.style.visibility = "visible";
     return `
     <img src="${catInfo.url
@@ -137,8 +143,34 @@ function showLoader1() {
     loader1.style.visibility = "visible";
 }
 
-function hideLoader2() {
+// function hideLoader2() {
 
-    loader2.classList.toggle("display");
-    console.log("ooo");
+//     loader2.classList.toggle("display");
+//     console.log("ooo");
+// }
+
+
+
+
+
+
+
+
+
+function showLoader() {
+    const loader = document.querySelector('.loader');
+    loader.style.visibility = "visible";
 }
+
+// function showLoader1() {
+//     const loader1 = document.querySelector('.loader.number1');
+//     loader1.style.visibility = "visible";
+// }
+function hideLoader() {
+ const loader = document.querySelector('.loader');
+    loader.style.display = "none";
+}
+// function hideLoader1() {
+//     const loader1 = document.querySelector('.loader.number1');
+//       loader1.style.display = "none";
+// }
